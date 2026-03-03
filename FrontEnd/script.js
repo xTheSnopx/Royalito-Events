@@ -19,6 +19,32 @@ navLinks.forEach(link => {
     });
 });
 
+// Update active nav link on scroll
+const sections = document.querySelectorAll('section[id]');
+
+function updateActiveNavLink() {
+    const scrollPosition = window.scrollY + navbar.offsetHeight + 100;
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const sectionId = section.getAttribute('id');
+
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${sectionId}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    });
+}
+
+// Listen to scroll events
+window.addEventListener('scroll', updateActiveNavLink);
+window.addEventListener('load', updateActiveNavLink);
+
 // Smooth scroll for all anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -80,6 +106,29 @@ if (aboutModule) {
     observer.observe(aboutModule, { attributes: true, attributeFilter: ['class'] });
 }
 
+// Contact Form - Set minimum date to today
+const eventDateInput = document.getElementById('eventDate');
+if (eventDateInput) {
+    const today = new Date().toISOString().split('T')[0];
+    eventDateInput.setAttribute('min', today);
+}
+
+// Phone input validation - solo números
+const phoneInput = document.getElementById('phone');
+if (phoneInput) {
+    phoneInput.addEventListener('input', (e) => {
+        e.target.value = e.target.value.replace(/[^0-9]/g, '');
+    });
+}
+
+// Name input validation - solo letras y espacios
+const nameInput = document.getElementById('name');
+if (nameInput) {
+    nameInput.addEventListener('input', (e) => {
+        e.target.value = e.target.value.replace(/[^A-Za-zÁÉÍÓÚáéíóúÑñ ]/g, '');
+    });
+}
+
 // Contact Form Submission
 const contactForm = document.getElementById('contactForm');
 
@@ -88,82 +137,152 @@ contactForm.addEventListener('submit', (e) => {
 
     // Get form values
     const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
     const phone = document.getElementById('phone').value;
     const eventType = document.getElementById('eventType').value;
+    const services = document.getElementById('services').value;
+    const eventDate = document.getElementById('eventDate').value;
+    const eventTime = document.getElementById('eventTime').value;
+    const guests = document.getElementById('guests').value;
+    const location = document.getElementById('location').value;
+    const budget = document.getElementById('budget').value;
+    const contactMethod = document.getElementById('contactMethod').value;
     const message = document.getElementById('message').value;
 
-    // Create a notification element
-    const notification = document.createElement('div');
-    notification.style.cssText = `
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 20px 30px;
-        border-radius: 10px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        z-index: 10000;
-        animation: slideIn 0.5s ease;
-    `;
+    // Map event type to text
+    const eventTypeTexts = {
+        'baby-shower': 'Baby Shower',
+        'boda': 'Boda / Matrimonio',
+        'fiesta-infantil': 'Fiesta Infantil',
+        'fiesta-empresarial': 'Fiesta Empresarial',
+        'quinceañera': 'Quinceañera',
+        'bautizo': 'Bautizo',
+        'primera-comunion': 'Primera Comunion',
+        'graduacion': 'Graduacion',
+        'aniversario': 'Aniversario',
+        'decoracion': 'Decoracion con Globos',
+        'shows': 'Shows y Animacion',
+        'otro': 'Otro Evento'
+    };
 
-    // Add animation
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes slideIn {
-            from {
-                transform: translateX(400px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        @keyframes slideOut {
-            from {
-                transform: translateX(0);
-                opacity: 1;
-            }
-            to {
-                transform: translateX(400px);
-                opacity: 0;
-            }
-        }
-    `;
-    document.head.appendChild(style);
+    // Map services to text
+    const serviceTexts = {
+        // Personajes y Disfraces
+        'disfraces-tamaño-real': 'Acompañamiento con Disfraces Tamaño Real',
+        'mario-sonic-vaca': 'Mario / Sonic / La Vaca Lola',
+        'personaje-personalizado': 'Otro Personaje (ver comentarios)',
+        // Decoracion
+        'decoracion-globos': 'Decoracion con Globos',
+        'decoracion-tematica': 'Decoracion Tematica Completa',
+        'arcos-columnas': 'Arcos y Columnas de Globos',
+        // Shows y Animacion
+        'show-payasos': 'Show de Payasos',
+        'show-magia': 'Show de Magia',
+        'show-titeres': 'Show de Titeres',
+        'zanqueros': 'Zanqueros y Circo',
+        'recreacion-dirigida': 'Recreacion Dirigida',
+        // Inflables
+        'castillos-inflables': 'Castillos Saltarines',
+        'inflables-acuaticos': 'Inflables Acuaticos',
+        // Comida
+        'mesa-dulces': 'Mesa de Dulces',
+        'snacks': 'Servicio de Snacks',
+        'comida-completa': 'Comida Completa',
+        // Sonido
+        'sonido-profesional': 'Sonido Profesional',
+        'iluminacion-led': 'Iluminacion LED',
+        'dj': 'DJ y Musica',
+        // Paquetes
+        'paquete-basico': 'Paquete Basico',
+        'paquete-estandar': 'Paquete Estandar',
+        'paquete-premium': 'Paquete Premium',
+        'paquete-personalizado': 'Paquete Personalizado'
+    };
 
-    notification.innerHTML = `
-        <h3 style="margin: 0 0 10px 0; font-size: 1.2rem;">
-            <i class="fas fa-check-circle"></i> ¡Mensaje Enviado!
-        </h3>
-        <p style="margin: 0; opacity: 0.9;">
-            Gracias ${name}, nos pondremos en contacto contigo pronto.
-        </p>
-    `;
+    // Map budget to text
+    const budgetTexts = {
+        'economico': 'Economico (Menos de $500.000)',
+        'moderado': 'Moderado ($500k - $1.5M)',
+        'alto': 'Alto ($1.5M - $3M)',
+        'premium': 'Premium (Mas de $3M)',
+        'consultar': 'Por consultar'
+    };
 
-    document.body.appendChild(notification);
+    // Map contact method
+    const contactMethodTexts = {
+        'whatsapp': 'WhatsApp',
+        'llamada': 'Llamada Telefonica',
+        'cualquiera': 'Cualquiera'
+    };
 
-    // Log form data (In a real application, this would be sent to a server)
-    console.log('Form Data:', {
-        name,
-        email,
-        phone,
-        eventType,
-        message
+    const eventTypeText = eventTypeTexts[eventType] || 'Evento';
+    const serviceText = serviceTexts[services] || services || 'No especificado';
+    const budgetText = budget ? budgetTexts[budget] : 'No especificado';
+    const contactMethodText = contactMethodTexts[contactMethod] || contactMethod;
+
+    // Format date
+    const dateObj = new Date(eventDate + 'T00:00:00');
+    const formattedDate = dateObj.toLocaleDateString('es-ES', { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
     });
 
+    // Create WhatsApp message
+    let whatsappMessage = `*SOLICITUD DE EVENTO - ROYALITO EVENTS*
+
+*************************************
+DATOS DEL CLIENTE
+*************************************
+
+Nombre: *${name}*
+Telefono: *${phone}*
+Contactar por: ${contactMethodText}
+
+*************************************
+DETALLES DEL EVENTO
+*************************************
+
+Tipo de evento: ${eventTypeText}
+Servicio solicitado: *${serviceText}*
+Fecha: ${formattedDate}`;
+
+    if (eventTime) {
+        whatsappMessage += `\nHora: *${eventTime}*`;
+    }
+
+    whatsappMessage += `\nInvitados: *${guests} personas*\nUbicacion: ${location}\nPresupuesto: ${budgetText}`;
+
+    if (message) {
+        whatsappMessage += `
+
+*************************************
+INFORMACION ADICIONAL
+*************************************
+
+${message}`;
+    }
+
+    whatsappMessage += `
+
+*************************************
+Espero su pronta respuesta!
+*************************************`;
+
+    // Encode message for URL
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    
+    // WhatsApp number (international format without +)
+    const whatsappNumber = '573202460888';
+    
+    // Create WhatsApp URL
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    
+    // Open WhatsApp in new tab
+    window.open(whatsappURL, '_blank');
+    
     // Reset form
     contactForm.reset();
-
-    // Remove notification after 5 seconds
-    setTimeout(() => {
-        notification.style.animation = 'slideOut 0.5s ease';
-        setTimeout(() => {
-            notification.remove();
-        }, 500);
-    }, 5000);
 });
 
 
@@ -256,16 +375,6 @@ function validatePhone(phone) {
 }
 
 // Real-time form validation
-document.getElementById('email').addEventListener('blur', function() {
-    if (!validateEmail(this.value) && this.value !== '') {
-        this.style.borderColor = '#ff6b6b';
-        showValidationMessage(this, 'Por favor ingresa un email válido');
-    } else {
-        this.style.borderColor = '#4ecdc4';
-        removeValidationMessage(this);
-    }
-});
-
 document.getElementById('phone').addEventListener('blur', function() {
     if (!validatePhone(this.value) && this.value !== '') {
         this.style.borderColor = '#ff6b6b';
