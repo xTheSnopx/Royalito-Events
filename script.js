@@ -303,7 +303,7 @@ const fadeObserver = new IntersectionObserver((entries) => {
 }, fadeObserverOptions);
 
 // Observe elements for fade-in
-const fadeElements = document.querySelectorAll('.service-card, .gallery-item, .testimonial-card');
+const fadeElements = document.querySelectorAll('.service-card, .gallery-item');
 fadeElements.forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)';
@@ -311,40 +311,120 @@ fadeElements.forEach(el => {
     fadeObserver.observe(el);
 });
 
-// Gallery item click handler (placeholder for future modal functionality)
+// Gallery item click handler
 const galleryItems = document.querySelectorAll('.gallery-item');
 galleryItems.forEach(item => {
     item.addEventListener('click', () => {
-        // You can add a modal/lightbox here in the future
         console.log('Gallery item clicked');
     });
 });
 
+// Auto-playing carousels for mobile devices
+function setupAutoCarousels() {
+    const carousels = document.querySelectorAll('.gallery-grid, .services-grid');
+    
+    carousels.forEach(carousel => {
+        let isDown = false;
+        let isHovered = false;
+        let autoPlayInterval;
+        
+        // Only run auto-play on mobile view where scroll-snap is active
+        const checkAutoPlay = () => {
+            clearInterval(autoPlayInterval);
+            if (window.innerWidth <= 768) {
+                startAutoPlay();
+            }
+        };
+
+        const startAutoPlay = () => {
+            autoPlayInterval = setInterval(() => {
+                if (!isDown && !isHovered) {
+                    const scrollAmount = carousel.clientWidth * 0.8; // Approx one card width
+                    
+                    if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 10) {
+                        // Reached the end, scroll back to start seamlessly
+                        carousel.scrollTo({ left: 0, behavior: 'smooth' });
+                    } else {
+                        // Scroll next
+                        carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                    }
+                }
+            }, 2500); // 2.5 seconds gives a bit more time to read than 2
+        };
+
+        // Pause on interaction
+        carousel.addEventListener('touchstart', () => isDown = true, {passive: true});
+        carousel.addEventListener('touchend', () => {
+            isDown = false;
+            // Restart timer after interaction
+            clearInterval(autoPlayInterval);
+            setTimeout(checkAutoPlay, 3000);
+        });
+        
+        carousel.addEventListener('mouseenter', () => isHovered = true);
+        carousel.addEventListener('mouseleave', () => isHovered = false);
+
+        // Make it draggable on desktop too
+        let startX, scrollLeft;
+        
+        carousel.addEventListener('mousedown', (e) => {
+            isDown = true;
+            carousel.style.cursor = 'grabbing';
+            startX = e.pageX - carousel.offsetLeft;
+            scrollLeft = carousel.scrollLeft;
+        });
+        
+        carousel.addEventListener('mouseup', () => {
+            isDown = false;
+            carousel.style.cursor = 'grab';
+        });
+        
+        carousel.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - carousel.offsetLeft;
+            const walk = (x - startX) * 2;
+            carousel.scrollLeft = scrollLeft - walk;
+        });
+
+        // Init
+        window.addEventListener('resize', checkAutoPlay);
+        checkAutoPlay();
+    });
+}
+
+// Initialize carousels
+setupAutoCarousels();
+
 // WhatsApp contact button (can be added later)
 function createWhatsAppButton() {
     const whatsappBtn = document.createElement('a');
-    whatsappBtn.href = 'https://wa.me/1234567890?text=Hola%2C%20me%20interesa%20información%20sobre%20sus%20servicios';
+    // URL encoded text: "Hola Royalito Events! Me gustaría cotizar un evento 🎉"
+    whatsappBtn.href = 'https://wa.me/573202460888?text=Hola%20Royalito%20Events!%20Me%20gustar%C3%ADa%20cotizar%20un%20evento';
     whatsappBtn.target = '_blank';
+    whatsappBtn.rel = 'noopener noreferrer';
     whatsappBtn.className = 'whatsapp-float';
     whatsappBtn.innerHTML = '<i class="fab fa-whatsapp"></i>';
     
     whatsappBtn.style.cssText = `
         position: fixed;
-        width: 60px;
-        height: 60px;
-        bottom: 40px;
-        right: 40px;
-        background-color: #25d366;
+        width: 64px;
+        height: 64px;
+        bottom: 24px;
+        right: 20px;
+        background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
         color: #FFF;
-        border-radius: 50px;
+        border-radius: 50%;
         text-align: center;
-        font-size: 30px;
-        box-shadow: 2px 2px 3px #999;
-        z-index: 100;
+        font-size: 32px;
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+        z-index: 9999;
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: all 0.3s ease;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        animation: whatsappPulse 3s ease-in-out infinite;
+        text-decoration: none;
     `;
 
     whatsappBtn.addEventListener('mouseenter', () => {
@@ -360,8 +440,18 @@ function createWhatsAppButton() {
     document.body.appendChild(whatsappBtn);
 }
 
-// Uncomment to add WhatsApp floating button
-// createWhatsAppButton();
+// Activate WhatsApp floating button with real number
+createWhatsAppButton();
+
+// Add WhatsApp pulse animation to page
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes whatsappPulse {
+        0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5); }
+        50% { box-shadow: 0 4px 30px rgba(37, 211, 102, 0.8), 0 0 0 8px rgba(37, 211, 102, 0.1); }
+    }
+`;
+document.head.appendChild(style);
 
 // Form validation
 function validateEmail(email) {

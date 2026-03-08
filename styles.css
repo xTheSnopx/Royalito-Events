@@ -14,7 +14,7 @@
 
 /* Animación para tarjetas de servicios - Colores únicos para cada tipo de evento */
 .service-card {
-    transition: transform 0.4s cubic-bezier(.25,.8,.25,1), box-shadow 0.4s, background 0.4s;
+    transition: transform 0.4s cubic-bezier(.25, .8, .25, 1), box-shadow 0.4s, background 0.4s;
     box-shadow: var(--shadow);
     background: white;
     position: relative;
@@ -22,24 +22,58 @@
 }
 
 /* Efectos visuales únicos para cada servicio */
-.service-card:nth-child(1) { border-top: 4px solid var(--pink-color); }
-.service-card:nth-child(2) { border-top: 4px solid var(--purple-color); }
-.service-card:nth-child(3) { border-top: 4px solid var(--accent-color); }
-.service-card:nth-child(4) { border-top: 4px solid var(--gold-color); }
-.service-card:nth-child(5) { border-top: 4px solid var(--green-color); }
-.service-card:nth-child(6) { border-top: 4px solid var(--secondary-color); }
+.service-card:nth-child(1) {
+    border-top: 4px solid var(--pink-color);
+}
+
+.service-card:nth-child(2) {
+    border-top: 4px solid var(--purple-color);
+}
+
+.service-card:nth-child(3) {
+    border-top: 4px solid var(--accent-color);
+}
+
+.service-card:nth-child(4) {
+    border-top: 4px solid var(--gold-color);
+}
+
+.service-card:nth-child(5) {
+    border-top: 4px solid var(--green-color);
+}
+
+.service-card:nth-child(6) {
+    border-top: 4px solid var(--secondary-color);
+}
 
 .service-card:hover {
     transform: translateY(-10px) scale(1.03);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
-.service-card:nth-child(1):hover { background: linear-gradient(135deg, #fff 60%, var(--pink-color) 150%); }
-.service-card:nth-child(2):hover { background: linear-gradient(135deg, #fff 60%, var(--purple-color) 150%); }
-.service-card:nth-child(3):hover { background: linear-gradient(135deg, #fff 60%, var(--accent-color) 150%); }
-.service-card:nth-child(4):hover { background: linear-gradient(135deg, #fff 60%, var(--gold-color) 150%); }
-.service-card:nth-child(5):hover { background: linear-gradient(135deg, #fff 60%, var(--green-color) 150%); }
-.service-card:nth-child(6):hover { background: linear-gradient(135deg, #fff 60%, var(--secondary-color) 150%); }
+.service-card:nth-child(1):hover {
+    background: linear-gradient(135deg, #fff 60%, var(--pink-color) 150%);
+}
+
+.service-card:nth-child(2):hover {
+    background: linear-gradient(135deg, #fff 60%, var(--purple-color) 150%);
+}
+
+.service-card:nth-child(3):hover {
+    background: linear-gradient(135deg, #fff 60%, var(--accent-color) 150%);
+}
+
+.service-card:nth-child(4):hover {
+    background: linear-gradient(135deg, #fff 60%, var(--gold-color) 150%);
+}
+
+.service-card:nth-child(5):hover {
+    background: linear-gradient(135deg, #fff 60%, var(--green-color) 150%);
+}
+
+.service-card:nth-child(6):hover {
+    background: linear-gradient(135deg, #fff 60%, var(--secondary-color) 150%);
+}
 
 /* Decoración festiva en las tarjetas */
 .service-card::after {
@@ -64,6 +98,7 @@
     z-index: 1;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+
 .btn::before {
     content: '';
     position: absolute;
@@ -71,16 +106,18 @@
     top: 50%;
     width: 0;
     height: 0;
-    background: rgba(255,255,255,0.4);
+    background: rgba(255, 255, 255, 0.4);
     border-radius: 50%;
     transform: translate(-50%, -50%);
     transition: width 0.6s, height 0.6s;
     z-index: 0;
 }
+
 .btn:hover::before {
     width: 300%;
     height: 500%;
 }
+
 .btn span {
     position: relative;
     z-index: 1;
@@ -100,11 +137,10 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(45deg, 
-        transparent 30%, 
-        rgba(255, 255, 255, 0.3) 50%, 
-        transparent 70%
-    );
+    background: linear-gradient(45deg,
+            transparent 30%,
+            rgba(255, 255, 255, 0.3) 50%,
+            transparent 70%);
     transform: translateX(-100%);
     transition: transform 0.6s;
 }
@@ -127,9 +163,17 @@
     background: white;
 }
 
-.testimonial-card:nth-child(1) { border-left-color: var(--pink-color); }
-.testimonial-card:nth-child(2) { border-left-color: var(--gold-color); }
-.testimonial-card:nth-child(3) { border-left-color: var(--purple-color); }
+.testimonial-card:nth-child(1) {
+    border-left-color: var(--pink-color);
+}
+
+.testimonial-card:nth-child(2) {
+    border-left-color: var(--gold-color);
+}
+
+.testimonial-card:nth-child(3) {
+    border-left-color: var(--purple-color);
+}
 
 .testimonial-card:hover {
     transform: translateY(-8px) scale(1.02);
@@ -161,6 +205,7 @@
     background-position: bottom;
     pointer-events: none;
 }
+
 /* Reset and Base Styles */
 * {
     margin: 0;
@@ -170,15 +215,23 @@
 
 :root {
     /* Colores vibrantes para eventos versátiles */
-    --primary-color: #ff6b6b;      /* Rojo coral - energía */
-    --secondary-color: #4ecdc4;    /* Turquesa - frescura */
-    --accent-color: #ffd93d;       /* Amarillo dorado - alegría */
-    --purple-color: #a29bfe;       /* Púrpura - elegancia */
-    --pink-color: #fd79a8;         /* Rosa - ternura (baby shower) */
-    --orange-color: #fab1a0;       /* Naranja pastel - calidez */
-    --green-color: #55efc4;        /* Verde menta - vitalidad */
-    --gold-color: #fdcb6e;         /* Dorado - lujo (bodas) */
-    
+    --primary-color: #ff6b6b;
+    /* Rojo coral - energía */
+    --secondary-color: #4ecdc4;
+    /* Turquesa - frescura */
+    --accent-color: #ffd93d;
+    /* Amarillo dorado - alegría */
+    --purple-color: #a29bfe;
+    /* Púrpura - elegancia */
+    --pink-color: #fd79a8;
+    /* Rosa - ternura (baby shower) */
+    --orange-color: #fab1a0;
+    /* Naranja pastel - calidez */
+    --green-color: #55efc4;
+    /* Verde menta - vitalidad */
+    --gold-color: #fdcb6e;
+    /* Dorado - lujo (bodas) */
+
     /* Colores base */
     --dark-color: #2d3436;
     --light-color: #f8f9fa;
@@ -243,13 +296,12 @@ html {
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg, 
-        var(--primary-color) 0%, 
-        var(--pink-color) 25%,
-        var(--accent-color) 50%, 
-        var(--secondary-color) 75%,
-        var(--purple-color) 100%
-    );
+    background: linear-gradient(90deg,
+            var(--primary-color) 0%,
+            var(--pink-color) 25%,
+            var(--accent-color) 50%,
+            var(--secondary-color) 75%,
+            var(--purple-color) 100%);
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -345,37 +397,61 @@ html {
     transition: all 0.3s ease;
 }
 
-/* Hero Section - Festivo y vibrante */
+/* Hero Section - Con foto de fondo real */
 .hero {
     min-height: 100vh;
     height: auto;
     padding: 80px 20px 60px;
-    /* Gradiente multicolor festivo que representa diversidad de eventos */
-    background: linear-gradient(135deg, 
-        #667eea 0%,      /* Azul violeta */
-        #ff6b6b 25%,     /* Coral */
-        #ffd93d 50%,     /* Dorado */
-        #fd79a8 75%,     /* Rosa */
-        #4ecdc4 100%     /* Turquesa */
-    );
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
+    background: #1a1a2e;
+}
+
+/* Capa de imagen de fondo del hero */
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: scale(1.05);
+    transition: transform 8s ease;
+    animation: heroZoom 20s ease-in-out infinite alternate;
+}
+
+@keyframes heroZoom {
+    from {
+        transform: scale(1.05);
+    }
+
+    to {
+        transform: scale(1.12);
+    }
 }
 
 /* Animación de gradiente para efecto dinámico */
 @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
-/* Efecto de confeti/celebración */
+/* Partículas de luz sobre la foto */
 .hero::before {
     content: '';
     position: absolute;
@@ -383,21 +459,13 @@ html {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: 
-        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.3) 2px, transparent 2px),
-        radial-gradient(circle at 60% 80%, rgba(255, 217, 61, 0.4) 3px, transparent 3px),
-        radial-gradient(circle at 80% 30%, rgba(253, 121, 168, 0.3) 2px, transparent 2px),
-        radial-gradient(circle at 40% 20%, rgba(78, 205, 196, 0.4) 2.5px, transparent 2.5px),
-        radial-gradient(circle at 10% 80%, rgba(162, 155, 254, 0.3) 2px, transparent 2px);
-    background-size: 200px 200px, 250px 250px, 180px 180px, 220px 220px, 190px 190px;
-    background-position: 0 0, 40px 60px, 130px 270px, 70px 100px, 150px 30px;
-    animation: confettiFloat 20s linear infinite;
-    opacity: 0.6;
-}
-
-@keyframes confettiFloat {
-    from { transform: translateY(0); }
-    to { transform: translateY(-200px); }
+    background: radial-gradient(ellipse at top,
+            rgba(255, 107, 107, 0.15) 0%,
+            transparent 60%), radial-gradient(ellipse at bottom,
+            rgba(78, 205, 196, 0.1) 0%,
+            transparent 60%);
+    z-index: 1;
+    pointer-events: none;
 }
 
 .hero-overlay {
@@ -406,7 +474,25 @@ html {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.3);
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.55) 0%,
+            rgba(0, 0, 0, 0.35) 50%,
+            rgba(0, 0, 0, 0.65) 100%);
+    z-index: 1;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: rgba(255, 217, 61, 0.2);
+    border: 1px solid rgba(255, 217, 61, 0.6);
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(4px);
 }
 
 .hero-content {
@@ -417,6 +503,9 @@ html {
     animation: fadeInUp 1s ease;
     max-width: 1000px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .hero-title {
@@ -506,6 +595,7 @@ html {
     animation: bounce 2s infinite;
     filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.3));
     cursor: pointer;
+    z-index: 2;
 }
 
 .scroll-indicator:hover {
@@ -520,22 +610,6 @@ section {
     padding: 80px 0;
     width: 100%;
     position: relative;
-}
-
-.hero {
-    min-height: 100vh;
-    height: auto;
-    padding: 80px 20px 60px;
-    background: linear-gradient(135deg, 
-        #667eea 0%,
-        #ff6b6b 25%,
-        #ffd93d 50%,
-        #fd79a8 75%,
-        #4ecdc4 100%
-    );
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
-    overflow: hidden;
 }
 
 .section-header {
@@ -559,13 +633,12 @@ section {
     transform: translateX(-50%);
     width: 100px;
     height: 4px;
-    background: linear-gradient(90deg, 
-        var(--primary-color), 
-        var(--pink-color),
-        var(--accent-color), 
-        var(--secondary-color),
-        var(--purple-color)
-    );
+    background: linear-gradient(90deg,
+            var(--primary-color),
+            var(--pink-color),
+            var(--accent-color),
+            var(--secondary-color),
+            var(--purple-color));
     border-radius: 2px;
     box-shadow: 0 2px 10px rgba(255, 107, 107, 0.3);
 }
@@ -590,7 +663,7 @@ section {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: 
+    background-image:
         radial-gradient(circle at 10% 20%, rgba(255, 107, 107, 0.03) 1px, transparent 1px),
         radial-gradient(circle at 90% 80%, rgba(78, 205, 196, 0.03) 1px, transparent 1px),
         radial-gradient(circle at 50% 50%, rgba(255, 217, 61, 0.03) 1px, transparent 1px);
@@ -609,8 +682,15 @@ section {
 }
 
 @keyframes float {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(5deg); }
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
 }
 
 .section-header p {
@@ -646,12 +726,29 @@ section {
 }
 
 /* Íconos con colores únicos para cada servicio */
-.service-card:nth-child(1) .service-icon { background: linear-gradient(135deg, var(--pink-color), var(--orange-color)); }
-.service-card:nth-child(2) .service-icon { background: linear-gradient(135deg, var(--purple-color), var(--pink-color)); }
-.service-card:nth-child(3) .service-icon { background: linear-gradient(135deg, var(--accent-color), var(--gold-color)); }
-.service-card:nth-child(4) .service-icon { background: linear-gradient(135deg, var(--gold-color), var(--orange-color)); }
-.service-card:nth-child(5) .service-icon { background: linear-gradient(135deg, var(--green-color), var(--secondary-color)); }
-.service-card:nth-child(6) .service-icon { background: linear-gradient(135deg, var(--secondary-color), var(--purple-color)); }
+.service-card:nth-child(1) .service-icon {
+    background: linear-gradient(135deg, var(--pink-color), var(--orange-color));
+}
+
+.service-card:nth-child(2) .service-icon {
+    background: linear-gradient(135deg, var(--purple-color), var(--pink-color));
+}
+
+.service-card:nth-child(3) .service-icon {
+    background: linear-gradient(135deg, var(--accent-color), var(--gold-color));
+}
+
+.service-card:nth-child(4) .service-icon {
+    background: linear-gradient(135deg, var(--gold-color), var(--orange-color));
+}
+
+.service-card:nth-child(5) .service-icon {
+    background: linear-gradient(135deg, var(--green-color), var(--secondary-color));
+}
+
+.service-card:nth-child(6) .service-icon {
+    background: linear-gradient(135deg, var(--secondary-color), var(--purple-color));
+}
 
 .service-card:hover .service-icon {
     transform: scale(1.1) rotate(5deg);
@@ -745,24 +842,27 @@ section {
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3));
+    background: transparent;
     color: white;
     padding: 30px 20px 20px;
     transition: all 0.3s ease;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .gallery-item:hover .gallery-overlay {
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.5));
+    background: transparent;
     padding: 40px 20px 20px;
 }
 
 .gallery-overlay h4 {
     font-size: 1.3rem;
     margin-bottom: 5px;
+    font-weight: 700;
 }
 
 .gallery-overlay p {
-    opacity: 0.9;
+    opacity: 0.95;
+    font-weight: 500;
 }
 
 /* About Section - Fondo mejorado */
@@ -848,48 +948,56 @@ section {
 }
 
 .about-image {
-    height: 100%;
-    min-height: 400px;
+    width: 100%;
+    min-width: 0; /* Previene el desbordamiento "blow out" en CSS Grid */
+    height: auto;
 }
 
-.image-placeholder {
-    height: 100%;
-    background: linear-gradient(135deg, 
-        var(--pink-color) 0%,
-        var(--purple-color) 50%,
-        var(--secondary-color) 100%
-    );
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 4rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+/* Imagen real del equipo */
+.about-img-wrapper {
     position: relative;
+    width: 100%;
+    aspect-ratio: 4/3; /* Mantiene una proporción horizontal, hace que la imagen no sea tan alta */
+    max-height: 400px; /* Limita la altura máxima en PCs grandes */
+    border-radius: 20px;
     overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-.image-placeholder::before {
-    content: '';
+.about-img-wrapper:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+}
+
+.about-team-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.about-img-wrapper:hover .about-team-img {
+    transform: scale(1.05);
+}
+
+.about-img-badge {
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 10%, transparent 40%);
-    animation: rotateGlow 10s linear infinite;
-}
-
-@keyframes rotateGlow {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-.image-placeholder p {
-    font-size: 1.2rem;
-    margin-top: 20px;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, var(--primary-color), var(--pink-color));
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+    backdrop-filter: blur(4px);
 }
 
 /* Testimonials - Fondo festivo */
@@ -922,8 +1030,13 @@ section {
 }
 
 @keyframes rotateGlow {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .image-placeholder p {
@@ -932,58 +1045,7 @@ section {
     margin-top: 20px;
 }
 
-/* Testimonials */
-.testimonials {
-    background: var(--light-color);
-}
-
-.testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
-
-.stars i {
-    filter: drop-shadow(0 2px 4px rgba(255, 217, 61, 0.4));
-}
-
-.testimonial-card {
-    background: white;
-    padding: 35px;
-    border-radius: 15px;
-    box-shadow: var(--shadow);
-    transition: transform 0.3s ease;
-    min-height: 280px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.testimonial-card:hover {
-    transform: translateY(-5px);
-}
-
-.stars {
-    color: var(--accent-color);
-    margin-bottom: 15px;
-}
-
-.testimonial-card p {
-    color: var(--text-light);
-    font-style: italic;
-    margin-bottom: 20px;
-    line-height: 1.8;
-}
-
-.testimonial-author h4 {
-    color: var(--dark-color);
-    margin-bottom: 5px;
-}
-
-.testimonial-author span {
-    color: var(--text-light);
-    font-size: 0.9rem;
-}
+/* (Testimonials removed) */
 
 /* Contact Section */
 .contact {
@@ -998,7 +1060,7 @@ section {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: 
+    background-image:
         radial-gradient(circle at 15% 25%, rgba(253, 121, 168, 0.05) 2px, transparent 2px),
         radial-gradient(circle at 85% 75%, rgba(78, 205, 196, 0.05) 2px, transparent 2px),
         radial-gradient(circle at 50% 50%, rgba(255, 217, 61, 0.05) 2px, transparent 2px);
@@ -1045,11 +1107,25 @@ section {
 }
 
 /* Colores variados para íconos de contacto */
-.contact-item:nth-child(1) i { background: linear-gradient(135deg, var(--primary-color), var(--pink-color)); }
-.contact-item:nth-child(2) i { background: linear-gradient(135deg, var(--secondary-color), var(--green-color)); }
-.contact-item:nth-child(3) i { background: linear-gradient(135deg, var(--purple-color), var(--accent-color)); }
-.contact-item:nth-child(4) i { background: linear-gradient(135deg, var(--pink-color), var(--orange-color)); }
-.contact-item:nth-child(5) i { background: linear-gradient(135deg, var(--gold-color), var(--accent-color)); }
+.contact-item:nth-child(1) i {
+    background: linear-gradient(135deg, var(--primary-color), var(--pink-color));
+}
+
+.contact-item:nth-child(2) i {
+    background: linear-gradient(135deg, var(--secondary-color), var(--green-color));
+}
+
+.contact-item:nth-child(3) i {
+    background: linear-gradient(135deg, var(--purple-color), var(--accent-color));
+}
+
+.contact-item:nth-child(4) i {
+    background: linear-gradient(135deg, var(--pink-color), var(--orange-color));
+}
+
+.contact-item:nth-child(5) i {
+    background: linear-gradient(135deg, var(--gold-color), var(--accent-color));
+}
 
 .contact-item h4 {
     color: var(--dark-color);
@@ -1085,7 +1161,9 @@ section {
     color: white;
     transform: translateY(-5px) rotate(5deg);
     box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
-}contact-item h4 {
+}
+
+contact-item h4 {
     color: var(--dark-color);
     margin-bottom: 5px;
 }
@@ -1264,14 +1342,13 @@ section {
     left: 0;
     right: 0;
     height: 6px;
-    background: linear-gradient(90deg, 
-        var(--primary-color), 
-        var(--pink-color),
-        var(--accent-color), 
-        var(--secondary-color),
-        var(--purple-color),
-        var(--primary-color)
-    );
+    background: linear-gradient(90deg,
+            var(--primary-color),
+            var(--pink-color),
+            var(--accent-color),
+            var(--secondary-color),
+            var(--purple-color),
+            var(--primary-color));
     box-shadow: 0 2px 10px rgba(255, 107, 107, 0.5);
 }
 
@@ -1427,6 +1504,7 @@ section {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -1434,100 +1512,393 @@ section {
 }
 
 @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
         transform: translateX(-50%) translateY(0);
     }
+
     40% {
         transform: translateX(-50%) translateY(-10px);
     }
+
     60% {
         transform: translateX(-50%) translateY(-5px);
     }
 }
 
-/* Responsive Design */
+/* ==========================================
+   RESPONSIVE DESIGN - MOBILE FIRST
+   ========================================== */
+
+/* Tablets (768px y menos) */
 @media (max-width: 768px) {
+
+    /* --- NAVBAR --- */
     .hamburger {
         display: flex;
+        z-index: 1001;
     }
 
     .nav-menu {
         position: fixed;
-        left: -100%;
-        top: 70px;
-        flex-direction: column;
-        background: white;
+        top: 0;
+        left: 0;
         width: 100%;
-        text-align: center;
-        transition: 0.3s;
-        box-shadow: var(--shadow-lg);
-        padding: 20px 0;
-        z-index: 999;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.97);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transform: translateX(-100%);
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1000;
+        padding: 80px 20px 40px;
+        box-shadow: none;
     }
 
     .nav-menu.active {
         left: 0;
+        transform: translateX(0);
     }
 
+    .nav-menu li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-link {
+        display: block;
+        padding: 16px 24px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        border-radius: 12px;
+        transition: background 0.2s, color 0.2s;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+        background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(253, 121, 168, 0.1));
+        color: var(--primary-color);
+    }
+
+    /* Hamburger animado */
+    .hamburger.active span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .hamburger span {
+        transition: all 0.3s ease;
+    }
+
+    /* --- HERO --- */
     .hero {
-        padding: 100px 20px 60px;
-        min-height: 90vh;
+        padding: 0;
+        min-height: 100svh;
+        justify-content: flex-end;
+        padding-bottom: 60px;
+    }
+
+    .hero-content {
+        padding: 0 20px 20px;
+        width: 100%;
+        max-width: 100%;
     }
 
     .hero-title {
-        font-size: 2rem;
+        font-size: clamp(1.6rem, 7vw, 2.2rem);
+        line-height: 1.25;
+        margin-bottom: 12px;
     }
 
     .hero-subtitle {
-        font-size: 1rem;
+        font-size: clamp(0.85rem, 3.5vw, 1rem);
+        margin-bottom: 24px;
+        line-height: 1.6;
     }
 
     .hero-buttons {
         flex-direction: column;
-        align-items: stretch;
+        gap: 12px;
         width: 100%;
-        max-width: 300px;
-        margin: 0 auto;
     }
 
-    .about-content,
+    .hero-buttons .btn {
+        width: 100%;
+        text-align: center;
+        padding: 16px 20px;
+        font-size: 1rem;
+    }
+
+    /* --- SECTIONS --- */
+    section {
+        padding: 40px 0;
+    }
+
+    .section-header {
+        margin-bottom: 24px;
+        padding: 0 20px;
+    }
+
+    .section-header h2 {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+    }
+
+    .section-header p {
+        font-size: 0.95rem;
+    }
+
+    /* --- SERVICES — Carrusel horizontal --- */
+    .services-grid {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 14px;
+        padding: 4px 20px 16px;
+        /* Oculta scrollbar pero mantiene funcionalidad */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .services-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .service-card {
+        flex: 0 0 80vw;
+        max-width: 300px;
+        scroll-snap-align: start;
+        padding: 24px 20px;
+        min-height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        border-top: 4px solid;
+        border-left: none !important;
+    }
+
+    .service-card:nth-child(1) {
+        border-top-color: var(--pink-color);
+    }
+
+    .service-card:nth-child(2) {
+        border-top-color: var(--purple-color);
+    }
+
+    .service-card:nth-child(3) {
+        border-top-color: var(--accent-color);
+    }
+
+    .service-card:nth-child(4) {
+        border-top-color: var(--gold-color);
+    }
+
+    .service-card:nth-child(5) {
+        border-top-color: var(--green-color);
+    }
+
+    .service-card:nth-child(6) {
+        border-top-color: var(--secondary-color);
+    }
+
+    .service-icon {
+        width: 56px;
+        height: 56px;
+        min-width: 56px;
+        font-size: 1.4rem;
+        margin: 0 0 14px 0;
+    }
+
+    .service-card h3 {
+        font-size: 1.05rem;
+        margin-bottom: 8px;
+    }
+
+    .service-card p {
+        font-size: 0.88rem;
+        margin-bottom: 10px;
+    }
+
+    .service-features li {
+        padding: 4px 0;
+        font-size: 0.85rem;
+    }
+
+    /* --- GALLERY — Carrusel horizontal --- */
+    .gallery-grid {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 12px;
+        padding: 4px 20px 16px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .gallery-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .gallery-item {
+        flex: 0 0 75vw;
+        max-width: 280px;
+        height: 220px;
+        border-radius: 14px;
+        scroll-snap-align: start;
+    }
+
+    /* Primera foto ya no necesita ancho especial */
+    .gallery-item:first-child {
+        grid-column: auto;
+        height: 220px;
+    }
+
+    .gallery-overlay {
+        padding: 20px 12px 12px;
+    }
+
+    .gallery-overlay h4 {
+        font-size: 1rem;
+    }
+
+    .gallery-overlay p {
+        font-size: 0.8rem;
+    }
+
+    /* --- ABOUT --- */
+    .about {
+        padding: 20px 0;
+        /* Menos padding en móvil */
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    /* Imagen del equipo destacada y más inmersiva en móvil */
+    .about-image {
+        order: -1;
+        min-height: auto;
+        margin: 0 -20px;
+        /* Hace que la imagen ocupe el ancho completo de la pantalla ignorando el padding del container */
+        border-radius: 0;
+    }
+
+    .about-img-wrapper {
+        min-height: auto;
+        max-height: 280px;
+        border-radius: 0;
+    }
+
+    .about-img-badge {
+        bottom: 10px;
+        right: 15px;
+        padding: 8px 16px;
+        font-size: 0.85rem;
+    }
+
+    .about-text h2 {
+        font-size: 1.6rem;
+    }
+
+    .about-text p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .about-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        /* Menor espacio entre cuadritos */
+        margin-top: 24px;
+    }
+
+    .stat {
+        padding: 12px 4px;
+        border-radius: 12px;
+    }
+
+    .stat-number {
+        font-size: 1.6rem;
+    }
+
+    .stat p {
+        font-size: 0.75rem;
+        font-weight: 600;
+        margin-top: 2px;
+    }
+
+    /* (Testimonios eliminados) */
+
+
+    /* --- CONTACT --- */
     .contact-content {
         grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .contact-info {
+        order: 2;
+    }
+
+    .contact-form {
+        order: 1;
+        padding: 28px 20px;
+        border-radius: 16px;
     }
 
     .form-row {
         grid-template-columns: 1fr;
+        gap: 0;
     }
 
-    .contact-form {
-        padding: 30px 20px;
+    .form-group {
+        margin-bottom: 16px;
     }
 
-    .form-group label {
-        font-size: 0.9rem;
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 14px;
+        font-size: 16px;
+        /* Evita zoom automático en iOS */
+        border-radius: 10px;
     }
 
-    .about-stats {
-        grid-template-columns: 1fr;
+    .contact-form .btn-block {
+        padding: 18px;
+        font-size: 1.05rem;
+        border-radius: 14px;
     }
 
-    .section-header h2 {
-        font-size: 2rem;
+    .contact-item {
+        gap: 14px;
     }
 
-    .services-grid,
-    .gallery-grid,
-    .testimonials-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .service-card,
-    .testimonial-card {
-        min-height: auto;
-    }
-
+    /* --- FOOTER --- */
     .footer-content {
         grid-template-columns: 1fr;
+        gap: 32px;
         text-align: center;
     }
 
@@ -1540,42 +1911,112 @@ section {
         left: 50%;
         transform: translateX(-50%);
     }
+
+    .footer-section ul {
+        list-style: none;
+    }
+
+    .footer-section a::before {
+        display: none;
+    }
 }
 
+/* Móviles pequeños (480px y menos) */
 @media (max-width: 480px) {
+
+    /* --- NAVBAR --- */
+    .navbar .container {
+        padding: 12px 16px;
+    }
+
+    .nav-logo span {
+        font-size: 1.15rem;
+    }
+
+    /* --- HERO --- */
     .hero {
-        padding: 80px 15px 50px;
+        min-height: 100svh;
+        padding-bottom: 50px;
     }
 
     .hero-title {
-        font-size: 1.5rem;
+        font-size: clamp(1.4rem, 8vw, 1.9rem);
     }
 
     .hero-subtitle {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
 
-    .btn {
-        padding: 12px 25px;
-        font-size: 0.9rem;
+    /* --- GALLERY — carrusel se mantiene, ajuste de tamaño --- */
+    .gallery-item {
+        flex: 0 0 82vw;
+        height: 200px;
     }
 
+
+    /* --- ABOUT --- */
+    .about-stats {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* --- CONTACT --- */
     .contact-form {
-        padding: 25px;
+        padding: 20px 16px;
     }
 
+    /* --- BUTTONS --- */
+    .btn {
+        padding: 14px 20px;
+        font-size: 0.95rem;
+    }
+
+    /* --- SECTION HEADER --- */
     .section-header h2 {
-        font-size: 1.75rem;
+        font-size: 1.5rem;
+    }
+
+    /* --- SERVICES (horizontal compacto) --- */
+    .service-card {
+        padding: 20px 16px;
+    }
+
+    /* --- FOOTER --- */
+    .footer {
+        padding: 40px 0 16px;
     }
 
     .footer::after {
         font-size: 1rem;
-        letter-spacing: 15px;
+        letter-spacing: 10px;
+    }
+}
+
+/* Teléfonos muy pequeños (360px y menos) */
+@media (max-width: 360px) {
+    .hero-title {
+        font-size: 1.3rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.8rem;
+    }
+
+    .about-stats {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .stat-number {
+        font-size: 1.6rem;
+    }
+
+    .section-header h2 {
+        font-size: 1.3rem;
     }
 
     .service-icon {
-        width: 70px;
-        height: 70px;
-        font-size: 1.75rem;
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+        font-size: 1.2rem;
     }
 }
